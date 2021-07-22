@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% block title %}Grupos{% endblock %}
+{% block title_main %}Mantenedor de Grupos {% endblock %}
+
+{% block content %}
+
+<main role="main" class="container">
+    <h3 class="lead" style="color: #596272"><strong>Eliminar Grupo</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'groups_list' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div><br> 
+
+    <div class="rounded shadow p-4 col-12 bg-white" style="margin-bottom: 100%;">
+        <h5 style="font-weight: lighter;">¿Desea eliminar el registro del grupo <strong>{{ group }}</strong>?</h5><br>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-danger" style="width: 120px; margin-right: 15px;" type="submit" value="Sí, eliminar"/>
+            <a class="btn btn-primary" style="width: 120px;" role="button" href="{% url 'groups_list' %}">Cancelar</a>
+        </form>
+
+    </div>   
+
+</main>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "base_generic.html" %}
+{% block title %}Usuarios{% endblock %}
+{% block title_main %}Mantenedor de Usuario{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #dddddd;
+    }
+    
+    td, th {
+        text-align: left;
+        padding-left: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    
+    thead {
+        background-color: #dddddd;
+        font-weight: bold;
+    }
+    </style>
+
+<main role="main" class="container">
+
+    <h3 class="lead" style="color: #596272"><strong>Usuarios</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'usuario_list' %}">
+                <i class="fas fa-redo-alt"></i> Refrescar</a>
+    </div><br><br><br> 
+
+    <div>
+        <div class="btns ">
+            <a href="{% url 'usuario_create' %}" class="btn btn-info mb-4 shadow-sm " style="margin-top: -38px;" role="button">
+                <i class="fas fa-plus-circle"></i> Crear</a>
+            <a href="{% url 'groups_list' %}" class="btn btn-primary mb-4 shadow-sm " style="margin-top: -38px;" role="button">
+                <i class="fas fa-tasks"></i> Grupos</a>    
+        </div>
+    </div><br>
+    
+    <div class="rounded shadow p-4 col-12 bg-white" style="margin-bottom: 100%;">
+        <table>
+            <thead>
+            <tr>
+                <th>user</th>
+                <th>Grupo</th>
+                <th>Activo</th>
+                <th>Última conexión</th>
+                <th>Fecha creación</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in user_list %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.groups.all.0.name}}</td>
+                <td class="text-center">
+                    {% if user.is_active %}
+                        <i class="fas fa-check-circle" style="color: green;"></i>
+                    {% else %}
+                        <i class="fas fa-times-circle" style="color: red;"></i>
+                    {% endif %}
+                </td>
+                <td>{{user.last_login}}</td>
+                <td>{{user.date_joined}}</td>
+            
+            
+                <td style="text-align: center">
+                    <a class="btn btn-warning" style="width: 120px; margin: 5px" href="usuario/{{user.id}}/update" role="button">
+                        <i class="fas fa-edit"></i> Editar</a>
+                    {% if user.is_active %}
+                        <a class="btn btn-danger" style="width: 125px; margin: 5px" href="usuario/{{user.id}}/deactivate" role="button">
+                            <i class="fas fa-times-circle"></i> Desactivar</a>
+                    {% else %}
+                        <a class="btn btn-info" style="width: 125px; margin: 5px" href="usuario/{{user.id}}/activate" role="button">
+                            <i class="fas fa-check-circle"></i> Activar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            
+            </tbody>
+        </table>
+    </div>
+</main>    
+
+
+
+{% endblock %}

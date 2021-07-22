@@ -1,0 +1,9 @@
+pip install django
+pip install django-widget-tweaks,
+pip3 install django-crispy-forms,
+pip install cx_oracle,
+pip install xhtml2pdf,
+pip install djangorestframework
+pip install markdown 
+pip install django-filter
+pip install django-cors-headers

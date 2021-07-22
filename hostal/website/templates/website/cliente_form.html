@@ -1,0 +1,128 @@
+{% extends "base_generic.html" %}
+{% block title %}Clientes{% endblock %}
+{% block title_main %}Mantenedor de Clientes{% endblock %}
+
+{% block content %}
+<style> 
+    * {
+    box-sizing: border-box;
+    }
+
+    input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    }
+
+    /*textarea {
+    height: 120px;
+    }*/
+
+    label {
+    display: inline-block;
+    /*font-weight: bold;*/
+    }
+</style> 
+
+<main role="main" class="container">
+
+    {% url 'cliente_create' as the_url %}
+    {% if request.get_full_path == the_url %}
+    <h3 class="lead" style="color: #596272"><strong>Crear Cliente</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'clientes' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div>
+    {% else %}
+    <h3 class="lead" style="color: #596272"><strong>Actualizar Cliente</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'clientes_list' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div>
+    {% endif %}
+
+    <div class="col-12">
+        <form action="" method="POST" class="post-form" enctype="multipart/form-data">
+            <div>
+                {%csrf_token%}
+                {% load widget_tweaks %} 
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="id_rut_cliente">{{ form.rut_cliente.label }}</label>
+                        {{ form.rut_cliente }}
+                        {{ form.rut_cliente.errors }}
+                    </div>
+                    <div class="col-md-2">
+                        <label for="id_dv">{{ form.dv.label }}</label>
+                        {{ form.dv }}
+                        {{ form.dv.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="id_nombre">{{ form.nombre.label }}</label>
+                        {{ form.nombre }}
+                        {{ form.nombre.errors }}
+                    </div>                    
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="id_telefono">{{ form.telefono.label }}</label>
+                        {{ form.telefono }}
+                        {{ form.telefono.errors }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_email">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="id_direccion">{{ form.direccion.label }}</label>
+                        {{ form.direccion }}
+                        {{ form.direccion.errors }}
+                    </div>                    
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="id_username">{{ form2.username.label }}</label>
+                        {{ form2.username }}                        
+                        {{ form2.username.help_text }}
+                        {{ form2.username.errors }}                        
+                    </div>                    
+                </div>
+
+                <div class="form-group row">                                       
+                    
+                    <div class="col-md-6">
+                        <label for="id_password1">{{ form2.password1.label }}</label>
+                        {% render_field form2.password1 class+="form-control" %}
+                        {{ form2.password1.help_text }}
+                        {{ form2.password1.errors }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_password2">{{ form2.password2.label }}</label>
+                        {% render_field form2.password2 class+="form-control" %}
+                        {{ form2.password2.help_text }}
+                        {{ form2.password2.errors }}
+                    </div>
+                    
+                </div>                
+                
+                <input type="submit" class="btn btn-primary mt-4 mb-5" style="width: 120px;" value="Grabar">
+            </div>
+        </form>
+    </div>
+    
+</main>
+
+{% endblock %}

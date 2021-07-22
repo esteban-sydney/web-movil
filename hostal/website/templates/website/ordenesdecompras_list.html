@@ -1,0 +1,84 @@
+{% extends "base_generic.html" %}
+{% block title %}Ordenesdecompras{% endblock %}
+{% block title_main %}Mantenedor Órdenes de Compras {% endblock %}
+
+
+{% block content %}
+{% load static %}
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+}
+
+td, th {
+    text-align: left;
+    padding-left: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+thead {
+    background-color: #dddddd;
+    /*font-weight: bold;*/
+}
+</style>
+
+<main role="main" class="container">
+    
+    <h3 class="lead" style="color: #596272"><strong>Visualizar Órdenes de Compra</strong></h3><br>
+    
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'ordenesdecompras' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div> 
+    
+    <div class="col-12">
+        <table>
+            <thead>
+                <tr>
+                    <td>Numero_orden_c</td>
+                    <td>Fecha_llegada</td>
+                    <td>Fecha_salida</td>
+                    <td>Total_dias</td>
+                    <td>Total_huespedes</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody class= "">
+                {% if object_list %}
+                {% for ordenesdecompra in object_list %}
+                <tr>
+    
+                    <td>{{ ordenesdecompra.numero_orden_c }}</td>
+                    <td>{{ ordenesdecompra.fecha_llegada }}</td>
+                    <td>{{ ordenesdecompra.fecha_salida }}</td>
+                    <td>{{ ordenesdecompra.total_dias }}</td>
+                    <td>{{ ordenesdecompra.total_huespedes }}</td>
+    
+                    <td style="text-align: center">
+                        <a class="btn btn-primary" style="width: 120px; margin: 5px" href="{% url 'ordenesdecompra_update' ordenesdecompra.pk %}">
+                            <i class="fas fa-edit"></i> Editar</a>
+                        <a class="btn btn-primary" style="width: 120px; margin: 5px" href="{% url 'ordenesdecompra_delete' ordenesdecompra.pk %}">
+                            <i class="fas fa-minus-circle"></i> Eliminar</a>
+                    </td>
+    
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h1>No hay registros de órdenes de compra.</h1>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</main><br>
+
+
+
+{% endblock %}

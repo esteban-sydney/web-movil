@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block title %}Orden_pedido{% endblock %}
+{% block title_main %}Mantenedor de Órdenes de Pedido{% endblock %}
+
+{% block content %}
+
+<form method="post" class="row g-3">
+    {%csrf_token%}
+    {% load crispy_forms_tags %}
+    {{ form|crispy }}
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">Grabar</button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Habitaciones</h1>
+    <h2>Cantidad: {{ cantidad }}</h2>
+    <table border="1" style="height: 30px;">
+        <thead>
+            <th>Nro Habitación</td>
+            <th>Tipo</td>
+            <th>Estado</td>
+            <th>Tipo Cama</td>
+            <th>Accesorios</td>
+            <th>Precio</td>
+        </thead>
+        <tbody>           
+            {% for habitacion in habitaciones %}
+                <tr style="padding: 3px;">
+                    <td>{{ habitacion.numero_habitacion }}</td>
+                    <td>{{ habitacion.tipo }}</td>
+                    <td>{{ habitacion.estado }}</td>
+                    <td>{{ habitacion.tipo_cama }}</td>
+                    <td>{{ habitacion.accesorios }}</td>
+                    <td>{{ habitacion.precio }}</td>
+                </tr>
+            {% endfor %}     
+        </tbody>
+    </table>
+</body>
+</html>

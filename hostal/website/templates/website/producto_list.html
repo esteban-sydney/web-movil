@@ -1,0 +1,96 @@
+{% extends "base_generic.html" %}
+{% block title %}Productos{% endblock %}
+{% block title_main %}Mantenedor de Productos{% endblock %}
+
+
+{% block content %}
+{% load static %}
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+}
+
+td, th {
+    text-align: left;
+    padding-left: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+thead {
+    background-color: #dddddd;
+    /*font-weight: bold;*/
+}
+
+</style>
+
+<main role="main" class="container">
+    
+    <h3 class="lead" style="color: #596272"><strong>Visualizar Productos</strong></h3><br>
+    
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'producto' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div> 
+    
+    <div class="col-12">
+        <table>
+            <thead>
+                <tr>
+                    <td>codigo_producto</td>
+                    <td>nombre</td>
+                    <td>familia</td>
+                    <td>descripcion</td>
+                    <td>fecha_elaboracion</td>
+                    <td>fecha_vencimineto</td>
+                    <td>stock</td>
+                    <td>stock_critico</td>
+                    <td>precio_unitario</td>
+                    <td>item</td>
+                    <td>Actividad</td>
+
+                </tr>
+            </thead>
+            <tbody class= "">
+                {% if object_list %}
+                {% for producto in object_list %}
+                <tr>
+    
+                    <td>{{ producto.codigo_producto}}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.familia }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.fecha_elaboracion }}</td>
+                    <td>{{ producto.fecha_vencimineto }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>{{ producto.stock_critico }}</td>
+                    <td>{{ producto.precio_unitario }}</td>
+                    <td>{{ producto.item }}</td>
+    
+                    <td style="text-align: center">
+                        <a class="btn btn-primary" style="width: 120px; margin: 5px" href="{% url 'producto_update' producto.pk %}">
+                            <i class="fas fa-edit"></i> Editar</a>
+                        <a class="btn btn-primary" style="width: 120px; margin: 5px" href="{% url 'producto_delete' producto.pk %}">
+                            <i class="fas fa-minus-circle"></i> Eliminar</a>
+                    </td>
+    
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h1 style="text-align: center; size: 25px, padding-button=70%">No hay registros de productos.</h1>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+</main><br>
+
+
+
+{% endblock %}

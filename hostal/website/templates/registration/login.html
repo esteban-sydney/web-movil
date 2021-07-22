@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Hostal Doña Clarita</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <!--<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <!-- <link href="signin.css" rel="stylesheet"> -->
+    <link href="{% static 'css/signin.css' %}" rel="stylesheet"> 
+  </head>
+  <body class="text-center">
+    
+<main class="form-signin shadow" style="background-color: #f8f9fa;">
+   
+    <form class="form-signin" action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <img class="mb-4" src="{% static 'img/logo-hostal2.png' %}" alt="" width="300" style="padding-right: 28px;">
+        <h1 class="h3 mb-4 font-weight-normal">Ingreso al portal</h1>
+        
+        {% load widget_tweaks %}
+
+        <div class="mb-2">
+          {% render_field form.username placeholder=form.username.label class+="form-control" %}     
+        </div>
+        <div>
+          {% render_field form.password placeholder=form.password.label class+="form-control" %}
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" style="width: 100%;">Ingresar</button>
+
+        
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            Usuario o contraseña incorrecta, Intente nuevamente
+        </div>
+        {% endif %}
+        
+        <!--<a href="{% url 'password_reset'%}">¿Olvidó su contraseña?</a> -->
+
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    </form>
+
+</main>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+{% block title %}Proveedores{% endblock %}
+{% block title_main %}Mantenedor de Proveedores{% endblock %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="{% url 'rubro_create' %}" role="button">Nuevo Rubro Proveedor</a>
+ 
+<div class="table-responsive">
+<table class="table table-striped table-sm">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Rubro</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rubro_proveedor in rubro_proveedor_list %}
+        <tr>
+            <td>{{rubro_proveedor.id_rubro}}</td>
+            <td>{{rubro_proveedor.rubro}}</td>
+            <td>{{rubro_proveedor.descripcion}}</td>
+          
+            <td>
+                <a class="btn btn-primary" href="{% url 'rubro_update' rubro_proveedor.pk %}" role="button">Editar</a>
+                <a class="btn btn-primary" href="{% url 'rubro_delete' rubro_proveedor.pk %}" role="button">Eliminar</a>
+            </td>
+        </tr>
+    {% endfor %}
+    
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

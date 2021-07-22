@@ -1,0 +1,63 @@
+{% extends "base_generic.html" %}
+{% block title %}Grupos{% endblock %}
+{% block title_main %}Mantenedor de Grupos{% endblock %}
+
+{% block content %}
+<style> 
+    * {
+    box-sizing: border-box;
+    }
+
+    input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    }
+
+    /*textarea {
+    height: 120px;
+    }*/
+
+    label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #495057;
+    }
+</style> 
+
+<main role="main" class="container ">
+
+    {% url 'group_create' as the_url %}
+    {% if request.get_full_path == the_url %}
+    <h3 class="lead" style="color: #596272"><strong>Crear Grupo</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'groups_list' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div>
+    {% else %}
+    <h3 class="lead" style="color: #596272"><strong>Actualizar Grupo</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'groups_list' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div>
+    {% endif %}
+    <br>
+    <div class="rounded shadow p-4 col-12 bg-white" style="margin-bottom: 100%;">
+        <form action="" method="POST" class="post-form" enctype="multipart/form-data">
+            <div>
+                {%csrf_token%}
+                <table style="font-size: small;">
+                    {{form.as_p}}
+                </table>
+                <input type="submit" class="btn btn-primary mt-4 mb-2" style="width: 120px;" value="Enviar">
+            </div>
+        </form>
+    </div>
+</main><br>
+
+{% endblock %}

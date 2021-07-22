@@ -1,0 +1,113 @@
+{% extends "base_generic.html" %}
+{% block title %}Empleado{% endblock %}
+{% block title_main %}Mantenedor de Empleados{% endblock %}
+
+{% block content %}
+<style> 
+    * {
+    box-sizing: border-box;
+    }
+
+    input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    }
+
+    /*textarea {
+    height: 120px;
+    }*/
+
+    label {
+    display: inline-block;
+    /*font-weight: bold;*/
+    }
+</style> 
+
+<main role="main" class="container">
+
+    <h3 class="lead" style="color: #596272"><strong>Actualizar Empleado</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'empleados' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div>
+
+    <div class="col-12">
+        <form action="" method="POST" class="post-form" enctype="multipart/form-data">
+            <div>
+                {%csrf_token%}
+                {% load widget_tweaks %} 
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="id_rut_empleado">{{ form.rut_empleado.label }}</label>
+                        {{ form.rut_empleado }}
+                        {{ form.rut_empleado.errors }}
+                    </div>
+                    <div class="col-md-2">
+                        <label for="id_dv">{{ form.dv.label }}</label>
+                        {{ form.dv }}
+                        {{ form.dv.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="id_nombre">{{ form.nombres.label }}</label>
+                        {{ form.nombres }}
+                        {{ form.nombres.errors }}
+                    </div>                    
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="id_a_paterno">{{ form.a_paterno.label }}</label>
+                        {{ form.a_paterno }}
+                        {{ form.a_paterno.errors }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_a_materno">{{ form.a_materno.label }}</label>
+                        {{ form.a_materno }}
+                        {{ form.a_materno.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <label for="id_telefono">{{ form.telefono.label }}</label>
+                        {{ form.telefono }}
+                        {{ form.telefono.errors }}
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_email">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label for="id_direccion">{{ form.direccion.label }}</label>
+                        {{ form.direccion }}
+                        {{ form.direccion.errors }}
+                    </div>                    
+                </div>
+                
+                <div class="form-group ro form-check">
+                    <div class="col-md-3 ">
+                        <br>
+                        {{ form.administrador }}
+                        <label class="form-check-label" for="id_administrador">{{ form.administrador.label }}</label>
+                        <br><br>
+                    </div>
+                </div>
+                
+                <input type="submit" class="btn btn-primary mt-4 mb-5" style="width: 120px;" value="Grabar">
+            </div>
+        </form>
+    </div>
+</main><br>
+
+{% endblock %}

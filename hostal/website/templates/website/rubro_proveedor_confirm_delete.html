@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1>Eliminar Rubro Proveedor</h1>
+
+<p>Eliminar a {{ rubro_proveedor }}?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" action="" value="Si, eliminar."/>
+</form>
+
+{% endblock %}

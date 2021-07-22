@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+
+    <link rel="icon" type="image/x-icon" href="{% static 'img/house.png' %}" />
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+
+    <!-- iconos bloque servicios -->
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Fuente de Google -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->    
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">     
+    <link href="{% static 'css/mantenedor2.css' %}" rel="stylesheet"> 
+  </head>
+  <body>
+    
+    <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow-sm" style="background-color: purple !important;">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 shadow" href="{% url 'home' %}" style="font-family: 'Pacifico', cursive !important;">Hostal Doña Clarita</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <ul class="navbar-nav px-3">
+    <div>
+      {% if user.is_authenticated %}
+          <a href="{% url 'index' %}" id="userBookStop" style="color: white !important; text-decoration: none;">
+              <i class="fas fa-user"></i> {{ user.username }}<a href="{% url 'logout' %}" id="userBookStop" style="margin-left: 10px; color: white !important; text-decoration: none;">Cerrar sesión</a> 
+          </a>
+      {% else %}  
+          <a href="#" id="userBookStop">
+            <i class="fas fa-user"></i> Iniciar sesión
+          </a>                   
+      {% endif %}
+  </div>
+  </ul>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse shadow">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">          
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">
+              <span data-feather="home"></span>
+              <i class="fas fa-home" style="width:15%;float:inline-end;"></i>
+              Home
+            </a>
+          </li>
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'clientes' %}">
+              <span data-feather="file"></span>
+              <i class="fas fa-male" style="width:15%;float:inline-end;"></i>
+              Clientes
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'habitaciones' %}">
+              <span data-feather="shopping-cart"></span>
+              <i class="fas fa-bed" style="width:15%;float:inline-end;"></i>
+              Habitaciones
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'comedor' %}">
+              <span data-feather="users"></span>
+              <i class="fas fa-utensils" style="width:15%;float:inline-end;"></i>
+              Comedor
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'huespedes' %}">
+              <span data-feather="bar-chart-2"></span>
+              <i class="fas fa-users" style="width:15%;float:inline-end;"></i>
+              Huéspedes
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Empleado" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'reservas' %}">
+              <span data-feather="layers"></span>
+              <i class="fas fa-hotel" style="width:15%;float:inline-end;"></i>
+              Reservas
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Empleado" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'proveedores' %}">
+              <span data-feather="layers"></span>
+              <i class="fas fa-truck" style="width:15%;float:inline-end;"></i>
+              Proveedores
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+
+        <ul class="nav flex-column mb-2">
+          {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Cliente" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'facturas' %}">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-money-bill" style="width:15%;float:inline-end;"></i>
+              Facturas
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ordenesdecompras' %}">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-file" style="width:15%;float:inline-end;"></i>
+              Ordenes de compra
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'empleados' %}">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-user-friends" style="width:15%;float:inline-end;"></i>
+              Empleados
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Proveedor" or user.groups.all.0.name == "Empleado" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'orden_pedido' %}">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-file" style="width:15%;float:inline-end;"></i>            
+              Ordenes de pedido
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" or user.groups.all.0.name == "Empleado" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'producto' %}">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-barcode" style="width:15%;float:inline-end;"></i>
+              Productos
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'inventario' %}">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-dolly-flatbed" style="width:15%;float:inline-end;"></i>
+              Inventario
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'usuario_list' %}">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-user" style="width:15%;float:inline-end;"></i>
+              Usuarios y Grupos
+            </a>
+          </li>
+          {% endif %}
+          {% if user.groups.all.0.name == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              <i class="fas fa-chart-line" style="width:15%;float:inline-end;"></i>
+              Informes y estadísticas
+            </a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'cambiar_clave' %}">
+              <span data-feather="home"></span>
+              <i class="fas fa-key" style="width:15%;float:inline-end;"></i>
+              Cambiar Clave
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-light">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">{% block title_main %}{% endblock %}</h1>        
+      </div>
+      {% block content %}
+      
+       {% endblock %}
+    </main>
+  </div>
+</div>
+
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,104 @@
+{% extends "base_generic.html" %}
+{% block title %}Facturas{% endblock %}
+{% block title_main %}Mantenedor de Facturas{% endblock %}
+
+
+{% block content %}
+{% load static %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #dddddd;
+    }
+    
+    td, th {
+        text-align: left;
+        padding-left: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    
+    thead {
+        background-color: #dddddd;
+        /*font-weight: bold;*/
+    }
+</style>
+<main role="main" class="container">
+
+    <h3 class="lead" style="color: #596272"><strong>Mantenedor de Facturas</strong></h3><br>
+    
+    <div class="btns">
+        <div>
+            <a href="{% url 'factura_create' %}" class="btn btn-primary mt-4 mb-5" role="button">
+                  <i class="fas fa-file"></i> Crear</a>
+        </div>
+        <div>
+            <a href="{% url 'facturas_list' %}" class="btn btn-primary mt-4 mb-5" role="button">
+                  <i class="fas fa-eye"></i> Visualizar</a>
+        </div>
+    </div>
+    <br>
+    <form class="d-none d-sm-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" 
+    method="GET" style="width: 255px">
+        <div class="input-group">
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..." name="buscar" value="">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search fa-sm"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <br>
+    {% url 'factura' as the_url %}
+    {% if request.get_full_path != the_url %}
+    {% if factura %}
+    <div class="col-12">
+        <table>
+            <thead>
+                <tr>
+                    <td>Numero Factura</td>
+                    <td>Fecha</td>
+                    <td>Nombre</td>
+                    <td>Neto</td>
+                    <td>Iva</td>
+                    <td>Total</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody class= "">
+                
+                {% for factura in factura %}
+                <tr>
+    
+                    <td>{{ factura.numero_factura }}</td>
+                    <td>{{ factura.fecha }}</td>
+                    <td>{{ factura.neto }}</td>
+                    <td>{{ factura.iva }}</td>
+                    <td>{{ factura.total }}</td>
+    
+                    <td style="text-align: center">
+                        <a class="btn btn-primary" style="width: 120px; margin: 5px" href="{% url 'factura_update' factura.pk %}">
+                            <i class="fas fa-edit"></i> Editar</a>
+                        <a class="btn btn-primary" style="width: 120px; margin: 5px" href="{% url 'factura_delete' factura.pk %}">
+                            <i class="fas fa-minus-circle"></i> Eliminar</a>
+                    </td>
+    
+                </tr>
+                {% endfor %}
+                {% else %}
+                <h1>No hay registros con ese criterio de búsqueda.</h1>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+ 
+
+</main><br>
+
+{% endblock %}

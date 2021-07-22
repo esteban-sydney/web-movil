@@ -1,0 +1,96 @@
+{% extends "base_generic.html" %}
+{% block title %}Reservas{% endblock %}
+{% block title_main %}Detalle de Reserva{% endblock %}
+
+{% block content %}
+<style> 
+    * {
+    box-sizing: border-box;
+    }
+  
+    input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    }
+  
+    /*textarea {
+    height: 120px;
+    }*/
+  
+    label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #495057;
+    }
+  </style> 
+  
+  <main role="main" class="container ">
+    <div class="rounded shadow p-4 col-12 bg-white" style="margin-bottom: 100%;">
+        <form>
+            <fieldset disabled>
+                {%csrf_token%}
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label for="id_id_reserva">{{ form.id_reserva.label }}</label>
+                        {{ form.id_reserva }}
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="id_cliente">{{ form.cliente.label }}</label>
+                        {{ form.cliente }}
+                    </div>
+                </div>
+            
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label for="id_fecha_desde">{{ form.fecha_desde.label }}</label>
+                        {{ form.fecha_desde }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="id_fecha_hasta">{{ form.fecha_hasta.label }}</label>
+                        {{ form.fecha_hasta }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="id_vigente">Estado</label>
+                        {% if reserva.vigente == True %}
+                        <input id="id_vigente" class="form-control" value="Vigente">
+                        {% else %}
+                        <input id="id_vigente" class="form-control" value="Anulada">
+                        {% endif %}
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <br>
+        <h4>Detalle Huéspedes</h4>
+        <br>
+        <div class="table-responsive">
+            <table id="table-huespedes" class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>RUT</th>
+                        <th>Nombre</th>
+                        <th>E-mail</th>
+                        <th>Habitación</th>
+                </thead>
+                <tbody>      
+                    {% for huesped in huespedes %}
+                    <tr>
+                        <td>{{huesped.rut_huesped.rut_huesped}}-{{huesped.rut_huesped.dv}}</td>
+                        <td>{{huesped.rut_huesped.nombre}}</td>
+                        <td>{{huesped.rut_huesped.email}}</td>
+                        <td>{{huesped.habitacion}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+  </main>
+
+{% endblock %}

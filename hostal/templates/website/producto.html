@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+{% block title %}Productos{% endblock %}
+{% block title_main %}Mantenedor de Productos {% endblock %}
+
+
+{% block content %}
+
+
+<main role="main" class="container">
+
+    <h3 class="lead" style="color: #596272"><strong>Mantenedor de Productos</strong></h3><br>
+    
+    <div class="btns">
+        <div>
+            <a href="{% url 'producto_create' %}" class="btn btn-primary mt-4 mb-5" role="button">
+                  <i class="fas fa-file"></i> Crear</a>
+        </div>
+        <div>
+            <a href="{% url 'producto_list' %}" class="btn btn-primary mt-4 mb-5" role="button">
+                  <i class="fas fa-eye"></i> Visualizar</a>
+        </div>
+       
+    </div>
+ 
+
+</main><br>
+
+{% endblock %}
+

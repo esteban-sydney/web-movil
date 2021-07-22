@@ -1,0 +1,69 @@
+{% extends "base_generic.html" %} 
+{% block title %}Reservas{% endblock %} 
+{% block title_main %}Mantenedor de Reservas{% endblock %} 
+
+{% block content %}
+<style> 
+  * {
+  box-sizing: border-box;
+  }
+
+  input[type=text], input[type=number], select, textarea {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  }
+
+  /*textarea {
+  height: 120px;
+  }*/
+
+  label {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 3px;
+  color: #495057;
+  }
+</style> 
+
+<main role="main" class="container ">
+  <h3 class="lead" style="color: #596272"><strong>Crear Reserva</strong></h3><br>
+
+  <div>
+    <a class="nav-link mb-2" href="{% url 'reservas' %}">
+            <i class="fas fa-chevron-left"></i> Volver</a>
+  </div><br>
+
+  <div class="rounded shadow p-4 col-12 bg-white" style="margin-bottom: 100%;">
+    <form method="POST" class="g-3">
+      {%csrf_token%}
+  
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label for="id_cliente">{{ form.cliente.label }}</label>
+          {{ form.cliente }}
+        </div>
+      </div>
+  
+      <div class="form-group row">
+        <div class="col-md-3">
+          <label for="id_fecha_desde">{{ form.fecha_desde.label }}</label>
+          {{ form.fecha_desde }}
+        </div>
+        <div class="col-md-3">
+          <label for="id_fecha_hasta">{{ form.fecha_hasta.label }}</label>
+          {{ form.fecha_hasta }}
+        </div>
+      </div>
+      <br />
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary mt-4 mb-2">Crear reserva</button>
+      </div>
+    </form> 
+  </div>
+  
+</main>
+
+{% endblock %}

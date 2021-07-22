@@ -1,0 +1,214 @@
+/* Show it's not fixed to the top */
+body {
+  /*min-height: 75rem;*/
+  /*background-image: url("https://assets.awwwards.com/awards/images/2015/04/pattern.jpg");*/
+  background-color: #F8F9FA;
+  padding-top: 86px;
+  
+} 
+
+#logoBookStop{
+  color: #ffffff !important;
+  font-size: 20px;
+  text-decoration: none;
+  margin-right: 16px;
+  padding-top: 3px;
+  
+}
+
+
+#logoBookStop img{
+  margin-right: 7px;
+  margin-bottom: 3px;
+}
+
+#logoBookStop:hover{
+  filter: invert(40%) sepia(87%) saturate(7496%) hue-rotate(325deg) brightness(97%) contrast(89%);
+}
+
+.navbar{
+  -webkit-box-shadow:0px 2px 2px #dddddd;
+  -moz-box-shadow:0px 2px 2px #dddddd;
+  box-shadow:0px 2px 2px #dddddd;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  transition: 0.3s;
+  width: 100%;
+  top: 0;
+}
+
+#carousel1{
+  position: relative;
+  z-index: 0;
+}
+
+
+#userBookStop{
+  color: #ffffff;
+  font-size: 10px;
+  text-decoration: none;
+}
+
+#userBookStop:hover{
+  filter: invert(40%) sepia(87%) saturate(7496%) hue-rotate(325deg) brightness(97%) contrast(89%);
+}
+
+#userBookStop img{
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+#btnBuscar{
+  border-color: #e94f37; 
+  color: #e94f37;
+  margin-right: 20px;
+  margin-left: -5px;
+}
+
+#btnBuscar:hover{
+  background-color: #e94f37; 
+  color: #ffffff;
+}
+
+#btnRegistrarse{
+  border-color: #007BFF; 
+  color: #007BFF;
+}
+
+#btnRegistrarse:hover{
+  background-color: #0069D9; 
+  color: #ffffff;
+}
+
+#titLogo{
+  color: #ffffff; 
+  margin-left: 7px;
+}
+
+
+#qSomos{
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 0;
+  background-color: #F8F9FA;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #596272;
+}
+
+#qSomos h1{
+  color: #212529;
+}
+
+#qSomos h2{
+  color: #e94f37;
+}
+
+.card{
+  -webkit-box-shadow: 0px 0px 4px #c5c5c5;
+  -moz-box-shadow: 0px 0px 4px #c5c5c5;
+  box-shadow: 0px 0px 4px #c5c5c5;
+  border-radius: 7px;
+  margin-bottom: 20px;
+  text-align: justify;
+  padding: 5px;
+  color: #596272;
+}
+
+.card img{
+  width: 180px;
+}
+
+div>h4{
+  color: #212529;
+} 
+
+.newsletter{
+  background-color: #212529;
+  color: white;
+  padding-bottom: 5px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 7px;
+  -webkit-box-shadow: 0px 0px 7px #c5c5c5;
+  -moz-box-shadow: 0px 0px 7px #c5c5c5;
+  box-shadow: 0px 0px 7px #818181;
+  align-items: center;
+  font-size: 18px;
+}
+
+#newsletter h2{
+  color: white;
+}
+
+#btnNewsletter{
+  background-color: #e94f37; 
+  border-color: #e94f37;
+}
+
+#btnNewsletter:hover{
+  background-color: #e23c22; 
+  border-color: #e23c22;
+}
+
+#top10{
+  background-color: #ffffff;
+  padding: 20px 20px 20px 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  -webkit-box-shadow: 0px 0px 4px #c5c5c5;
+  -moz-box-shadow: 0px 0px 4px #c5c5c5;
+  box-shadow: 0px 0px 4px #c5c5c5;
+  border-radius: 7px;
+  align-items: center;
+  color: #596272;
+}
+
+#top10 h3{
+  color: #212529;
+}
+
+#linkLibro{
+  color: #e94f37; 
+  text-decoration: none;
+}
+
+#linkLibro:hover{
+  color: #3C92D8; 
+}
+
+footer{
+  padding: 20px;
+  color: #c5c5c5;
+  background-color: #212529;
+  height: 280px;
+  margin-top: 20px;
+}
+
+footer div p{
+  font-size: 12px;
+  color: #888888;
+  padding-top: 5px;
+  line-height: 10px;
+}
+
+#linkFooter{
+  color: #c5c5c5;
+  text-decoration: none;
+}
+
+@media (max-width:991px){
+  header label{
+      display: block;
+  }
+  footer{
+    height: 500px;
+  }
+  .carousel-caption{
+    color: transparent;
+  }
+}   
+
+

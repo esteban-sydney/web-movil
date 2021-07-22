@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+{% block title %}Orden pedido{% endblock %}
+{% block title_main %}Mantenedor de Órdenes de Pedido{% endblock %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="{% url 'orden_pedido_create' %}" role="button">Nueva orden pedido</a>
+ 
+<div class="table-responsive">
+<table class="table table-striped table-sm">
+    <thead>
+    <tr>
+        <th>Numero de orden</th>
+        <th>Fecha</th>
+        <th>Neto</th>
+        <th>IVA</th>
+        <th>Total</th>
+        <th>Rut proveedor</th>
+        <th>Acciones</th>
+        
+    </tr>
+    </thead>
+    <tbody>
+    {% for orden_pedido in orden_pedido_list %}
+    <tr>
+        <td>{{orden_pedido.numero_orden_p}}</td>
+        <td>{{orden_pedido.fecha}}</td>
+        <td>{{orden_pedido.neto}}</td>
+        <td>{{orden_pedido.iva}}</td>
+        <td>{{orden_pedido.total}}</td>
+        <td>{{orden_pedido.rut_proveedor}}</td>        
+        
+      
+        <td>
+            <a class="btn btn-primary" href="orden_pedido/{{orden_pedido.numero_orden_p}}/update" role="button">Editar</a>
+		    <!--<a class="btn btn-primary" href="proveedor/{{proveedor.rut_proveedor}}" role="button">Ver</a>-->
+			<a class="btn btn-primary" href="orden_pedido/{{orden_pedido.numero_orden_p}}/delete" role="button">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+    
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

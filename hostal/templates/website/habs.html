@@ -1,0 +1,60 @@
+{% extends "base_generic_2.html" %}
+
+{% block content %}
+{% load static %}
+<div class="container"><br><br>
+    <h2 style="color: #ea2f6c !important; text-align: center;"><strong>Habitaciones</strong></h2><br><br>
+    <div class="row">
+
+        <div class="col-md">
+            <div class="card text-center">
+                <img class="mx-auto p-4" src="{% static 'img/index_body/ind-min.jpg' %}" style="width: 100% !important;">
+                <div class="card-body">
+                    <h4 class="card-title">Individual</h4>
+                    <p class="card-text"><hr></p>
+                    <a href="#" class="btn btn-primary col-12 mt-2">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="card text-center">
+                <img class="mx-auto p-4" src="{% static 'img/index_body/ind_premium-min.jpg' %}" style="width: 100% !important;">
+                <div class="card-body">
+                    <h4 class="card-title">Individual Premium</h4>
+                    <p class="card-text"><hr></p>
+                    <a href="#" class="btn btn-primary col-12 mt-2">Ver</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+
+        <div class="col-md">
+            <div class="card text-center">
+                <img class="mx-auto p-4" src="{% static 'img/index_body/doble-min.jpg' %}" style="width: 100% !important;">
+                <div class="card-body">
+                    <h4 class="card-title">Doble</h4>
+                    <p class="card-text"><hr></p>
+                    <a href="#" class="btn btn-primary col-12 mt-2">Ver</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="card text-center">
+                <img class="mx-auto p-4" src="{% static 'img/index_body/loft-min.jpg' %}" style="width: 100% !important;">
+                <div class="card-body">
+                    <h4 class="card-title">Loft</h4>
+                    <p class="card-text"><hr></p>
+                    <a href="#" class="btn btn-primary col-12 mt-2">Ver</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base_generic.html" %}
+{% block title %}Inventario{% endblock %}
+{% block title_main %}Mantenedor de Inventario{% endblock %}
+
+{% block content %}
+<style> 
+    * {
+    box-sizing: border-box;
+    }
+
+    input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    }
+
+    /*textarea {
+    height: 120px;
+    }*/
+
+    label {
+    display: inline-block;
+    /*font-weight: bold;*/
+    }
+</style> 
+
+<main role="main" class="container">
+
+
+    {% url 'inventario_create' as the_url %}
+    {% if request.get_full_path == the_url %}
+    <h3 class="lead" style="color: #596272"><strong>Crear Inventario</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'inventario' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div>
+    {% else %}
+    <h3 class="lead" style="color: #596272"><strong>Actualizar inventario</strong></h3><br>
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'inventario_list' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div>
+    {% endif %}
+
+    <div class="col-12">
+        <form action="" method="POST" class="post-form" enctype="multipart/form-data">
+            <div>
+                {%csrf_token%}
+                <table style="font-size: small;">
+                    {{form.as_p}}
+                </table>
+                <input type="submit" class="btn btn-primary mt-4 mb-5" style="width: 120px;" value="Enviar">
+            </div>
+        </form>
+    </div>
+</main><br>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base_generic.html" %}
+{% block title %}Grupos{% endblock %}
+{% block title_main %}Mantenedor de Grupos{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #dddddd;
+    }
+    
+    td, th {
+        text-align: left;
+        padding-left: 8px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+    
+    thead {
+        background-color: #dddddd;
+        font-weight: bold;
+    }
+    </style>
+    
+<main role="main" class="container">    
+
+    <h3 class="lead" style="color: #596272"><strong>Grupos</strong></h3><br> 
+    
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'usuario_list' %}">
+                <i class="fas fa-chevron-left"></i> Volver</a>
+    </div><br><br><br> 
+
+    <div>
+        <div class="btns ">
+            <a href="{% url 'group_create' %}" class="btn btn-info mb-4 shadow-sm " style="margin-top: -38px;" role="button">
+                <i class="fas fa-plus-circle"></i> Crear</a>
+        </div>
+    </div><br>
+    
+    
+    <div class="rounded shadow p-4 col-12 bg-white" style="margin-bottom: 100%;">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for group in group_list %}
+            <tr>
+                <td>{{group.name}}</td>      
+                <td style="text-align: center">
+                    <a class="btn btn-warning" style="width: 120px; margin: 5px" href="{% url 'group_update' group.pk %}">
+                        <i class="fas fa-edit"></i> Editar</a>
+                    <a class="btn btn-danger" style="width: 120px; margin: 5px" href="{% url 'group_delete' group.pk %}">
+                        <i class="fas fa-minus-circle"></i> Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+            </tbody>
+        </table>
+    </div><br>
+</main>
+
+{% endblock %}

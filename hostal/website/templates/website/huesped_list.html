@@ -1,0 +1,159 @@
+{% extends "base_generic.html" %}
+{% block title %}Huéspedes{% endblock %}
+{% block title_main %}Mantenedor de Huéspedes {% endblock %}
+
+
+{% block content %}
+{% load static %}
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+}
+
+td, th {
+    text-align: left;
+    padding-left: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+thead {
+    background-color: #dddddd;
+    font-weight: bold;
+}
+</style>
+
+<main role="main" class="container">
+    
+    <h3 class="lead" style="color: #596272"><strong>Visualizar Huéspedes</strong></h3><br> 
+    
+
+    <div>
+        <a class="nav-link mb-2" href="{% url 'huespedes' %}">
+                <i class="fas fa-redo-alt"></i> Refrescar</a>
+    </div><br> 
+
+    <div class="rounded col-12 bg-light">
+        <form class="d-none d-sm-block mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="buscar"
+        method="GET" style="width: 255px;">
+            <div class="input-group">
+                <input type="text" class="form-control bg-white border-0 small shadow-sm" placeholder="Buscar..." name="buscar" value="">
+                <div class="input-group-append">
+                    <button class="btn btn-primary shadow-sm" type="submit" style="border-radius: 0px 5px 5px 0px;">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div >
+            <div>
+                <a href="{% url 'huesped_create' %}" class="btn btn-info mb-4 shadow-sm" style="float: right; margin-top: -38px; margin-right: 0px; width: 90px;" role="button">
+                    <i class="fas fa-plus-circle"></i> Crear</a>
+            </div>
+            <div>
+                <a href="{% url 'habitaciones_pdf' %}" class="btn btn-danger mb-4 shadow-sm" style="float: right; margin-top: -38px; margin-right: 14px; width: 90px;" role="button">
+                    <i class="fas fa-file-download"></i> Pdf</a>
+            </div>
+            <div class="btns">
+                <a href="{% url 'huesped_list' %}" class="btn btn-primary mb-4 shadow-sm" style="float: left; margin-top: -38px; margin-left: 269px;" role="button">
+                    <i class="fas fa-eye"></i> Ver todo</a>
+            </div>
+        </div>
+    </div><br>
+
+    <div class="rounded shadow p-4 pt-1 col-12 bg-white" style="margin-bottom: 100%;">
+        {% url 'huesped_list' as the_url %}
+        {% if request.get_full_path == the_url %}
+        {% if object_list %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Rut</th>
+                    <th>Dv</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="">
+                
+                {% for huesped in object_list %}
+                <tr>
+    
+                    <td>{{huesped.rut_huesped}}</td>
+                    <td>{{huesped.dv}}</td>
+                    <td>{{huesped.nombre}}</td>
+                    <td>{{huesped.telefono}}</td>
+                    <td>{{huesped.email}}</td>
+    
+                    <td style="text-align: center">
+                        <a class="btn btn-warning" style="width: 120px; margin: 5px" href="{% url 'huesped_update' huesped.pk %}">
+                            <i class="fas fa-edit"></i> Editar</a>
+                        <a class="btn btn-danger" style="width: 120px; margin: 5px" href="{% url 'huesped_delete' huesped.pk %}">
+                            <i class="fas fa-minus-circle"></i> Eliminar</a>
+                    </td>
+    
+                </tr>
+                {% endfor %}
+
+            {% else %}
+            <h1 class="pt-3">No hay registros de huéspedes.</h1>
+            {% endif %}
+            
+            </tbody>
+        </table>
+
+        {% else %}
+        {% if huesped %}
+        <div class="col-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rut</th>
+                        <th>Dv</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Email</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    
+                    {% for huesped in huesped %}
+                    <tr>
+        
+                        <td>{{huesped.rut_huesped}}</td>
+                        <td>{{huesped.dv}}</td>
+                        <td>{{huesped.nombre}}</td>
+                        <td>{{huesped.telefono}}</td>
+                        <td>{{huesped.email}}</td>
+        
+                        <td style="text-align: center">
+                            <a class="btn btn-warning" style="width: 120px; margin: 5px" href="{% url 'huesped_update' huesped.pk %}">
+                                <i class="fas fa-edit"></i> Editar</a>
+                            <a class="btn btn-danger" style="width: 120px; margin: 5px" href="{% url 'huesped_delete' huesped.pk %}">
+                                <i class="fas fa-minus-circle"></i> Eliminar</a>
+                        </td>
+        
+                    </tr>
+                    {% endfor %}
+
+                {% else %}
+                <h1 class="pt-3">No hay registros con ese criterio de búsqueda.</h1>
+                {% endif %}
+    {% endif %}    
+    </div>
+    
+</main><br>
+
+
+
+{% endblock %}

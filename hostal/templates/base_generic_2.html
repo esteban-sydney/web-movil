@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% block title %}<title>Hostal Doña clarita</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="{% static '#' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estiles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles_2.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div>
+        {% block navbar %}
+        <nav class="navbar navbar-dark navbar-expand-md bg-light mb-4 shadow-sm" id="barraNav" style="background-color: purple !important;">
+            <a href="{% url 'index' %}" id="logoBookStop" style="font-family: 'Pacifico', cursive !important; color: white !important;">
+                <img src="{% static '#' %}" alt="" width="40px">Hostal Doña Clarita
+            </a>
+
+            <!-- INICIO BOTÓN HAMBURGUESA -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- FIN BOTÓN HAMBURGUESA -->
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'habs' %}">Habitaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                </ul>
+                <div>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'index' %}" id="userBookStop" style="color: white !important;">
+                            <i class="fas fa-user"></i> {{ user.username }}<a href="{% url 'logout' %}" id="userBookStop" style="margin-left: 10px; color: white !important;">Cerrar sesión</a> 
+                        </a>
+                    {% else %}  
+                        <a href="{% url 'login' %}" id="userBookStop">
+                            <i class="fas fa-user"></i> Iniciar sesión
+                        </a>                   
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        {% endblock %}
+    </div>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+
+    <div role="main" class="container">
+        {% block newsletter%}
+        <br><hr><br>
+        <div class="mb-4" style="background-color: #F8F9FA; padding-left: 20%; padding-right: 20%;">
+            <div class="col-lg">
+                <img src="{% static 'img/logo-hostal2.png' %}" alt="Quiénes Somos" class=" card-img-top mx-auto">
+            </div>
+
+        </div>
+        {% endblock %}
+    </div>
+
+
+    {% block footer%}
+    <br>
+    <footer>
+        <div class="row col-12" >
+            <a class="col-lg-2 mb-3" href="{% url 'index' %}" id="logoBookStop" style="font-family: 'Pacifico', cursive !important;">
+                <img src="{% static '#' %}" alt="" width="40px">Hostal Doña Clarita
+            </a>
+            
+            <div class="col-lg-1">
+                <a href="{% url 'index' %}" id="linkFooter"><strong>INICIO</strong></a>
+            </div>
+            <div class="col-lg-1">
+                <a href="{% url 'habs' %}" id="linkFooter"><strong>HABs</strong></a>
+            </div>
+            <div class="col-lg-3">
+                <strong>CONTACTO</strong>
+            </div>
+
+            <div class="col-lg-2">
+                
+                <strong>Síguenos</strong>
+                <br><br>
+                <div class="row">
+                    <img src="{% static 'img/2000px-Facebook_font_awesome.svg.png' %}" alt="" width="30px" height="30px"
+                        style=" margin-left: 15px;">
+                    <img src="{% static 'img/twitter.png' %}" alt="" width="30px" height="30px"
+                        style=" margin-left: 10px;">
+                    <img src="{% static 'img/Instagram.png' %}" alt="" width="30px" height="30px"
+                        style=" margin-left: 10px;" class="mb-3">
+
+                </div>
+            </div>
+
+
+            <div class="col-lg-2">
+                
+                <strong>Contacto</strong>
+                <br><br>
+                <div class="row">
+                    <img src="{% static 'img/location.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px;">
+                    <p>Av. Esq. Blanca 501, Maipú</p>
+                </div>
+                <div class="row">
+                    <img src="{% static 'img/fono.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px;">
+                    <p>225554000</p>
+                </div>
+                <div class="row">
+                    <img src="{% static 'img/email.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px;">
+                    <p>consultas@donaclarita.cl</p>
+                </div>
+                <br><br>
+
+                <p>&copy; Hostal Doña Clarita - 2021</p>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- script que permite mostrar/ocultar navbar haciendo scroll -->
+    <script type="text/javascript">
+        let ubicacionInicial = window.pageYOffset;
+        window.onscroll = function () {
+            let ubicacionPosterior = window.pageYOffset;
+            if (ubicacionInicial >= ubicacionPosterior) {
+                document.getElementById("barraNav").style.top = "0";
+            }
+            else {
+                document.getElementById("barraNav").style.top = "-70px";
+            }
+            ubicacionInicial = ubicacionPosterior
+        }
+    </script>
+</body>
+
+</html>

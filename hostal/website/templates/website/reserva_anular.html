@@ -1,0 +1,51 @@
+{% extends "base_generic.html" %}
+{% block title %}Reservas{% endblock %}
+{% block title_main %}Mantenedor de Reservas{% endblock %}
+{% block content %}
+<style> 
+    * {
+    box-sizing: border-box;
+    }
+  
+    input[type=text], input[type=number], select, textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    }
+  
+    /*textarea {
+    height: 120px;
+    }*/
+  
+    label {
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #495057;
+    }
+  </style> 
+  
+  <main role="main" class="container ">
+    <h1>Anular Reserva</h1>
+
+    <p>Anular la reserva {{ reserva.id_reserva }}?</p>
+    <div class="rounded shadow p-4 col-12 bg-white" style="margin-bottom: 100%;">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="submit" action="" value="Si, anular"/>
+        </form>
+    </div>
+
+  </main>
+<h1>Anular Reserva</h1>
+
+<p>Anular la reserva {{ reserva.id_reserva }}?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" action="" value="Si, anular"/>
+</form>
+
+{% endblock %}
